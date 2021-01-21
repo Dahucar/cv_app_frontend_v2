@@ -121,15 +121,3 @@ export const initialOtherItems = [
     inpuType: "date",
   },
 ];
-
-
-/*
-
-{
-    "titleItem": "Certification",
-    "titleActivity": "Certificacion on Java SE",
-    "description": "Proceso de certificación en JavaSE por parte de Oracle",
-    "initDate": "2019-02-05",
-    "finishDate": "2019-02-11"
-}
-*/

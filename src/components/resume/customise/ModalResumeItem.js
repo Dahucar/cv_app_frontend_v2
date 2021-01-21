@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { validateFieldsModal, converFields } from "../../../helpers/validateFieldsModal";
+import { useForm } from "../../../hooks/useForm";
 
 export const ModalResumeItem = ({
   itemsFormModal = [],
@@ -7,7 +9,17 @@ export const ModalResumeItem = ({
   onShow,
   title,
 }) => {
-  console.log(onHide, onShow);
+  const inputsFild = converFields( itemsFormModal );
+  const [ values, handleInputChangue, resetInputsValues ] = useForm({ ...inputsFild });
+
+  const handlerResetForm = () => {
+    resetInputsValues();
+  }
+  
+  const handlerDefaultSubmit = (e) => {
+    e.preventDefault();
+    validateFieldsModal( values );
+  }
   return (
     <Modal
       show={onShow}
@@ -15,7 +27,7 @@ export const ModalResumeItem = ({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Form>
+      <Form onSubmit={ handlerDefaultSubmit }>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
         </Modal.Header>
@@ -29,6 +41,7 @@ export const ModalResumeItem = ({
               <Form.Control
                 type={`${item.inpuType}`}
                 name={`${item.inputName}`}
+                onChange={ handleInputChangue }
                 autoComplete="off"
                 placeholder={`${item.inputPlace}`}
               />
@@ -36,8 +49,8 @@ export const ModalResumeItem = ({
           ))}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={onHide}>
-            Close
+          <Button type="reset" variant="danger" onClick={handlerResetForm}>
+            Reset fields
           </Button>
           <Button variant="success" type="submit">
             Save Resume

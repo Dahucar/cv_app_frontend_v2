@@ -3,9 +3,9 @@ import { Button } from "react-bootstrap";
 import { initialSkillsInput } from "../../../helpers/initialFormItems";
 import { resumeItems } from "../../../helpers/resumeItems";
 import { ResumeItemsList } from "../customiseItems/ResumeItemsList";
-import { ModalResumeItem } from "./ModalResumeItem";
+import { ModalResumeItem } from "./ModalResumeItem"; 
 
-export const SkillsScreen = () => {
+export const SkillsScreen = () => { 
   const [showModalSkill, setShowModalSkill] = useState(false);
   return (
     <>
