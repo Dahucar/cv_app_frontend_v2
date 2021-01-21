@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
+import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { EducationsScreen } from "./EducationsScreen";
 import { ExperiencesScreen } from "./ExperiencesScreen";
@@ -9,19 +9,19 @@ import { SkillsScreen } from "./SkillsScreen";
 export const CustomiseNav = () => {
   return (
     <div id="layoutSidenav_content">
-      <main className="">
-        <Nav justify variant="tabs" defaultActiveKey="/customise-resume">
+      <main className="main">
+        <Nav className="sb-sidenav-dark" justify variant="tabs" defaultActiveKey="/customise-resume/skills">
           <Nav.Item>
-           <Link className="nav-link" to="/customise-resume/skills">Skills</Link>
+           <NavLink className="nav-link" activeClassName="active" to="/customise-resume/skills">Skills</NavLink>
           </Nav.Item>
           <Nav.Item>
-           <Link className="nav-link" to="/customise-resume/education">Education</Link>
+           <NavLink className="nav-link" activeClassName="active" to="/customise-resume/education">Education</NavLink>
           </Nav.Item>
           <Nav.Item>
-           <Link className="nav-link" to="/customise-resume/experience">Experience</Link>
+           <NavLink className="nav-link" activeClassName="active" to="/customise-resume/experience">Experience</NavLink>
           </Nav.Item>
           <Nav.Item>
-           <Link className="nav-link" to="/customise-resume/other">Other</Link>
+           <NavLink className="nav-link" activeClassName="active" to="/customise-resume/other">Other</NavLink>
           </Nav.Item>
         </Nav>
         <Switch>

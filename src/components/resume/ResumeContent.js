@@ -7,7 +7,7 @@ import { BtnOptions } from "./BtnOptions";
 export const ResumeContent = () => {
   return (
     <div id="layoutSidenav_content">
-      <main>
+      <main className="main">
         <Container fluid>
           <BtnOptions />
           <h1 className="mt-4">Dashboard</h1>
