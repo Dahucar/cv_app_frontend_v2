@@ -1,8 +1,14 @@
+// react or dodule imports
 import React from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+// component imports
+import { Button, Form, Modal, Spinner } from "react-bootstrap";
+// helper imports
+import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
 import { converFields } from "../../../helpers/validateFieldsModal";
 import { useForm } from "../../../hooks/useForm";
-import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
+// action of reducer imports
+import { asyncAddSkill } from "../../../redux/reducers/skillReducer";
 
 export const ModalResumeItem = ({
   itemsFormModal = [],
@@ -11,6 +17,8 @@ export const ModalResumeItem = ({
   onShow,
   title,
 }) => {
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector(state => state.ui);
   // created field for custom hokks
   const inputsFild = converFields( itemsFormModal );
   const [ values, handleInputChangue, resetInputsValues ] = useForm({ ...inputsFild });
@@ -24,8 +32,7 @@ export const ModalResumeItem = ({
     // TODO: validate field in the item acions
     switch (toDispatch) {
       case typesToDispatchForm.skills:
-        console.table( values );
-        console.log('IN THIS CASE GO TO SKILLS ACTION');
+        dispatch( asyncAddSkill(values) );
         break;
       case typesToDispatchForm.education:
         console.table( values );
@@ -54,7 +61,7 @@ export const ModalResumeItem = ({
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body> 
           {itemsFormModal.map((item) => (
             <Form.Group
               key={item.inputName}
@@ -62,6 +69,7 @@ export const ModalResumeItem = ({
             >
               <Form.Label>{item.inputLabel}</Form.Label>
               <Form.Control
+                required
                 type={`${item.inpuType}`}
                 name={`${item.inputName}`}
                 onChange={ handleInputChangue }
@@ -72,10 +80,19 @@ export const ModalResumeItem = ({
           ))}
         </Modal.Body>
         <Modal.Footer>
-          <Button type="reset" variant="danger" onClick={handlerResetForm}>
+          <Button type="reset" variant="danger" onClick={handlerResetForm} disabled={isLoading}>
             Reset fields
           </Button>
-          <Button variant="success" type="submit">
+          <Button variant="success" type="submit" disabled={isLoading}>
+            {isLoading && (
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            )}
             Save Resume
           </Button>
         </Modal.Footer>
