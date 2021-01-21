@@ -1,7 +1,9 @@
 export const validateFieldsModal = ( values ) => {
-    console.log( values );
-    console.log( typeof values );
-    console.table( values );
+    console.log('values', values);
+    let valuesField = Object.values( values );
+    valuesField.forEach(field => {
+        console.log(field);
+    });
 }
 
 /**

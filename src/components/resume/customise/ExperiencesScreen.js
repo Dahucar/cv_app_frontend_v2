@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { resumeItems } from "../../../helpers/resumeItems";
+import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
 import { ResumeItemsList } from "../customiseItems/ResumeItemsList";
 import { ModalResumeItem } from "./ModalResumeItem";
 import { initialExperiencesInput } from "../../../helpers/initialFormItems";
@@ -16,6 +17,7 @@ export const ExperiencesScreen = () => {
       <ResumeItemsList resumeItemList={ resumeItems }/>
       {showModalExp && (
         <ModalResumeItem 
+          toDispatch={ typesToDispatchForm.experience }
           onShow={ showModalExp } 
           itemsFormModal={ initialExperiencesInput }
           onHide={ () => setShowModalExp(false) }

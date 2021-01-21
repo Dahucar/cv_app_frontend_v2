@@ -1,14 +1,17 @@
 import React from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { validateFieldsModal, converFields } from "../../../helpers/validateFieldsModal";
+import { converFields } from "../../../helpers/validateFieldsModal";
 import { useForm } from "../../../hooks/useForm";
+import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
 
 export const ModalResumeItem = ({
   itemsFormModal = [],
+  toDispatch,
   onHide,
   onShow,
   title,
 }) => {
+  // created field for custom hokks
   const inputsFild = converFields( itemsFormModal );
   const [ values, handleInputChangue, resetInputsValues ] = useForm({ ...inputsFild });
 
@@ -18,7 +21,27 @@ export const ModalResumeItem = ({
   
   const handlerDefaultSubmit = (e) => {
     e.preventDefault();
-    validateFieldsModal( values );
+    // TODO: validate field in the item acions
+    switch (toDispatch) {
+      case typesToDispatchForm.skills:
+        console.table( values );
+        console.log('IN THIS CASE GO TO SKILLS ACTION');
+        break;
+      case typesToDispatchForm.education:
+        console.table( values );
+        console.log('IN THIS CASE GO TO EDUCATION ACTION');
+        break;
+      case typesToDispatchForm.experience:
+        console.table( values );
+        console.log('IN THIS CASE GO TO EXPERIENCE ACTION');
+        break;
+      case typesToDispatchForm.other:
+        console.table( values );
+        console.log('IN THIS CASE GO TO OTHER ACTION');
+        break;
+      default:
+        break;
+    }
   }
   return (
     <Modal

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { resumeItems } from "../../../helpers/resumeItems";
+import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
 import { ResumeItemsList } from "../customiseItems/ResumeItemsList";
 import { ModalResumeItem } from "./ModalResumeItem";
 import { initialOtherItems } from "../../../helpers/initialFormItems";
@@ -21,6 +22,7 @@ export const OthersScreen = () => {
       <ResumeItemsList resumeItemList={resumeItems} />
       {showModalOther && (
         <ModalResumeItem
+          toDispatch={ typesToDispatchForm.other }
           itemsFormModal={initialOtherItems}
           onShow={showModalOther}
           onHide={() => setShowModalOther(false)}

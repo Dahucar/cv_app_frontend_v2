@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { initialSkillsInput } from "../../../helpers/initialFormItems";
+import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
 import { resumeItems } from "../../../helpers/resumeItems";
 import { ResumeItemsList } from "../customiseItems/ResumeItemsList";
 import { ModalResumeItem } from "./ModalResumeItem"; 
@@ -21,6 +22,7 @@ export const SkillsScreen = () => {
       <ResumeItemsList resumeItemList={resumeItems} />
       {showModalSkill && (
         <ModalResumeItem
+          toDispatch={ typesToDispatchForm.skills }
           itemsFormModal={initialSkillsInput}
           onShow={showModalSkill}
           onHide={() => setShowModalSkill(false)}

@@ -4,6 +4,7 @@ import { resumeItems } from "../../../helpers/resumeItems";
 import { ResumeItemsList } from "../customiseItems/ResumeItemsList";
 import { ModalResumeItem } from "./ModalResumeItem";
 import { initialEducationItems } from "../../../helpers/initialFormItems";
+import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
 
 export const EducationsScreen = () => {
   const [showModalEducation, setShowModalEducation] = useState(false);
@@ -16,6 +17,7 @@ export const EducationsScreen = () => {
       <ResumeItemsList resumeItemList={ resumeItems }/>
       {showModalEducation && (
         <ModalResumeItem 
+          toDispatch={ typesToDispatchForm.education }
           itemsFormModal={initialEducationItems}
           onShow={ showModalEducation }
           onHide={ () => setShowModalEducation(false) }
