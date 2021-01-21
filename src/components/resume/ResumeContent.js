@@ -9,13 +9,14 @@ export const ResumeContent = () => {
     <div id="layoutSidenav_content">
       <main>
         <Container fluid>
+          <BtnOptions />
           <h1 className="mt-4">Dashboard</h1>
           <ol className="breadcrumb mb-4">
             <li className="breadcrumb-item active">Dashboard</li>
           </ol>
           <Row>
             {resumesList.map( item => (
-              <Col xl={3} md={6}>
+              <Col key={ item.id } xl={ 3 } md={ 6 }>
                 <Card className="mb-4">
                   <Card.Body>
                     { item.title }
@@ -34,7 +35,6 @@ export const ResumeContent = () => {
           </Row>
         </Container>
       </main>
-      <BtnOptions />
     </div>
   );
 };

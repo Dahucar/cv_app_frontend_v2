@@ -1,52 +1,51 @@
 import React from "react";
+import { Button, Form, Modal } from "react-bootstrap";
+import Swal from "sweetalert2";
+import { useForm } from "../../hooks/useForm";
 
-export const ResumeModal = ({}) => {
-  const handlerSubmit = (e) => {
+export const ResumeModal = (props) => {
+  const [values, handleInputChangue, resetInputsValues] = useForm({
+    rName: '',
+  });
+
+  const {rName} = values;
+
+  // TODO: validate form
+  const handlerSubmitResume = (e) => {
     e.preventDefault();
-  }
+    if(!rName){
+      return Swal.fire('Error', 'Please. Enter your resume name!.', 'error');
+    }
 
+    console.log('Resume saved! ->'+ rName);
+    resetInputsValues();
+    props.onHide();
+  };
   return (
-    <div
-      className="modal fade"
-      id="resumeModal"
-      tabIndex="-1"
-      aria-labelledby="resumeModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog modal-dialog-centered">
-        <form className="modal-content" onSubmit={ handlerSubmit }>
-          <div className="modal-header">
-            <h5 className="modal-title" id="resumeModalLabel">
-              Modal title
-            </h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div className="modal-body">
-            <div className="form-group">
-              <input type="text" className="form-control" placeholder="Enter your resume title" name="rTitle" autoComplete="off"/>
-            </div>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Add Resume
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Form onSubmit={handlerSubmitResume}>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Modal heading
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group controlId="formResume.nameControl">
+            <Form.Label>Resume name</Form.Label>
+            <Form.Control
+              type="text"
+              name="rName"
+              autoComplete="off"
+              onChange={handleInputChangue}
+              placeholder="Enter your resume name"
+            />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={props.onHide}>Close</Button>
+          <Button variant="success" type="submit">Save Resume</Button>
+        </Modal.Footer>
+      </Form>
+    </Modal>
   );
 };

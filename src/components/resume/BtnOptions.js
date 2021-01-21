@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { ResumeModal } from "./ResumeModal";
 import "./btn.css";
-import { ResumeModal } from './ResumeModal';
 
 export const BtnOptions = () => {
-  
-  const demo = () => {
-    console.log('Opem modal -> dispatch action her');
-  }
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
-      <button type="button" className="float" onClick={ demo } data-toggle="modal" data-target="#resumeModal">
+      <Button
+        variant="dark"
+        className="mt-2"
+        size="sm"
+        block
+        onClick={() => setModalShow(true)}
+      >
         <i className="fa fa-plus my-float"></i>
-      </button>
-      <ResumeModal />
+      </Button>
+      {modalShow && (
+        <ResumeModal show={modalShow} onHide={() => setModalShow(false)} />
+      )}
     </>
   );
-  
 };

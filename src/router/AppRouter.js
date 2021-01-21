@@ -1,8 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { ConfigScreen } from "../components/auth/ConfigScreen";
 import { LoginScreen } from "../components/auth/LoginScreen";
 import { PasswordScreen } from "../components/auth/PasswordScreen";
 import { RegisterScreen } from "../components/auth/RegisterScreen";
+import { CustomiseNav } from "../components/resume/customise/CustomiseNav";
 import { ResumeContent } from "../components/resume/ResumeContent";
 import { ResumeNavbar } from "../components/resume/ResumeNavbar";
 import { ResumeSidebar } from "../components/resume/ResumeSidebar";
@@ -18,11 +20,13 @@ export const AppRouter = () => {
         {/* Variable content */}
         <Switch>
           <Route exact path="/" component={WellcomeScreen} />
-          <Route path="/login" component={LoginScreen} />
-          <Route path="/register" component={RegisterScreen} />
-          <Route path="/reset-password" component={PasswordScreen} />
-          <Route path="/dashboard" component={ResumeContent} />
-          <Route path="/dashboard/config" component={ResumeContent} />
+          <Route exact path="/login" component={LoginScreen} />
+          <Route exact path="/register" component={RegisterScreen} />
+          <Route exact path="/reset-password" component={PasswordScreen} />
+          <Route exact path="/config-account" component={ConfigScreen} />
+          <Route exact path="/dashboard" component={ResumeContent} />
+          <Route path="/customise-resume" component={CustomiseNav} />
+          <Redirect to="/" />
         </Switch>
       </div>
     </Router>

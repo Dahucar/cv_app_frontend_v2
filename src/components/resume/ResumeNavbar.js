@@ -23,7 +23,6 @@ export const ResumeNavbar = () => {
         <i className="fas fa-bars text-white"></i>
       </button>
       <Nav className="mr-auto">
-        <Link className="navbar-brand" to="/about" >about</Link>
       </Nav>
       <Nav>
         <Nav.Link className="btn btn-danger text-white" onClick={ handlerExit }>logout { icoDrop }</Nav.Link>

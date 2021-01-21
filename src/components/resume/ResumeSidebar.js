@@ -23,7 +23,7 @@ export const ResumeSidebar = () => {
               Dashboard
             </NavLink>
             <NavLink
-              to="/Settings"
+              to="/config-account"
               className="nav-link"
               activeClassName="active"
             >
@@ -31,6 +31,16 @@ export const ResumeSidebar = () => {
                 <i className="fas fa-users-cog"></i>
               </div>
               Settings
+            </NavLink>
+            <NavLink
+              to="/customise-resume"
+              className="nav-link"
+              activeClassName="active"
+            >
+              <div className="sb-nav-link-icon">
+                <i className="fas fa-cog"></i>
+              </div>
+              Customise
             </NavLink>
           </div>
         </div>
