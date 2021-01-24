@@ -1,20 +1,43 @@
-import axios from "axios";
-import { syncFinishLoadingModal, syncStartLoadingModal } from "../actions/uiActions";
-const URL = 'http://localhost:4800/api/dahucar';
+import { types } from "../types/types";
 
-// add new skill item to de backend
-export const asyncAddSkill = ( values ) => {
-    return async ( dispatch ) => {
-        console.log('THIS IS ADD SKILL ACTION');
-        dispatch( syncStartLoadingModal() );
-        try {
-            dispatch( syncFinishLoadingModal() );
-            let idResume = 1;
-            axios.post(`${URL}/add-skill/${idResume}`, {
-                data: JSON.stringify(values)
-            })
-        } catch (error) {
-            console.log(error);
-        }
+const initialState = {
+    skillActive: null,
+    isLoading: false,
+    skillItems: []
+}
+
+export const skillReducer = ( state = initialState, action ) => {
+    switch (action.type) {
+        case types.skillLoadItems:
+            return {
+                ...state,
+                skillItems: [ ...action.payload ]
+            }
+
+        case types.skillStartLoadingPage:
+            return {
+                ...state,
+                isLoading: true
+            }
+
+        case types.skillFinishLoadingPage:
+            return {
+                ...state,
+                isLoading: false
+            }
+
+        case types.skillSetActive:
+            return {
+                ...state,
+                skillActive: action.payload
+            }
+
+        case types.skillResetActive:
+            return {
+                ...state,
+                skillActive: null
+            }
+        default:
+            return state;
     }
 }

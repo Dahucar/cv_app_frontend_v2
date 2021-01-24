@@ -8,7 +8,7 @@ import { typesToDispatchForm } from "../../../helpers/typesToDispatchForm";
 import { converFields } from "../../../helpers/validateFieldsModal";
 import { useForm } from "../../../hooks/useForm";
 // action of reducer imports
-import { asyncAddSkill } from "../../../redux/reducers/skillReducer";
+import { asyncAddSkill } from "../../../redux/actions/skillAction";
 
 export const ModalResumeItem = ({
   itemsFormModal = [],
@@ -74,6 +74,7 @@ export const ModalResumeItem = ({
                 name={`${item.inputName}`}
                 onChange={ handleInputChangue }
                 autoComplete="off"
+                disabled={isLoading}
                 placeholder={`${item.inputPlace}`}
               />
             </Form.Group>
